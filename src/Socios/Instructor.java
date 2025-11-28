@@ -1,7 +1,7 @@
 package Socios;
 
-public class Socio extends Persona{
-    public Socio(int dni, String nombre, int edad) {
+public class Instructor extends Persona{
+    public Instructor(int dni, String nombre, int edad) {
         super(dni, nombre, edad);
     }
 
