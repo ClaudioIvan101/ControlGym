@@ -34,15 +34,16 @@ public class SocioMenu {
         switch (opcion)
         {
             case 1:
-                System.out.println("Agregar"); break;
+                agregar();
+                break;
             case 2:
-                System.out.println("buscar"); break;
+                buscar(); break;
             case 3:
-                System.out.println("modificar"); break;
+                modificar(); break;
             case 4:
-                System.out.println("eliminar"); break;
+                eliminar(); break;
             case 5:
-                System.out.println("listar"); break;
+                listar(); break;
             case 0: break;
             default:
                 System.out.println("Opción inválida.");
