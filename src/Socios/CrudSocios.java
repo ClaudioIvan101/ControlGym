@@ -1,5 +1,8 @@
 package Socios;
 
+import Membresias.Membresia;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class CrudSocios {
@@ -32,6 +35,15 @@ public class CrudSocios {
     }
 
     public List<Socio> obtenerTodos() {
+        return socios;
+    }
+    public List<Socio> buscarPorMembresia(Membresia membresia) {
+        List<Socio> socios = new ArrayList<>();
+        for (Socio s : socios) {
+            if (s.getMembresia().getId() == membresia.getId()) {
+                socios.add(s);
+            }
+        }
         return socios;
     }
 }

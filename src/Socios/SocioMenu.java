@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class SocioMenu {
     private Scanner scanner;
+
     public void mostrarMenu() {
     int opcion = -1;
 
@@ -37,8 +38,7 @@ public class SocioMenu {
                 System.out.println("Opción inválida.");
         }
 
-
-
     } while (opcion != 0);
 }
+
 }
