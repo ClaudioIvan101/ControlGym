@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class Socio extends Persona{
+public class Socio extends Persona {
     private List<Cuota> cuotas = new ArrayList<>();
     private LocalDate vencimientoActual;
     private Membresia membresia;
@@ -23,12 +23,18 @@ public class Socio extends Persona{
         System.out.println(getNombre() + " (" + getDni() + ") - Membresía: " + membresia.getNombre());
     }
 
-    public void setMembresia(Membresia membresia) { this.membresia = membresia; }
-    public Membresia getMembresia() { return membresia; }
+    public void setMembresia(Membresia membresia) {
+        this.membresia = membresia;
+    }
+
+    public Membresia getMembresia() {
+        return membresia;
+    }
 
     public List<Cuota> getCuotas() {
         return cuotas;
     }
+
     public Cuota getUltimaCuotaPagada() {
         if (cuotas.isEmpty()) return null;
 
@@ -44,8 +50,4 @@ public class Socio extends Persona{
         return !ultima.getFechaVencimiento().isBefore(LocalDate.now());
     }
 
-    @Override
-    public String toString() {
-        return getNombre() + " (" + getDni() + ") - Membresía: " + membresia.getNombre();
-    }
 }
