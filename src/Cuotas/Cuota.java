@@ -1,4 +1,4 @@
-package cuotas;
+package Cuotas;
 
 import Membresias.Membresia;
 import Socios.Socio;
