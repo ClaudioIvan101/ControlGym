@@ -81,7 +81,9 @@ public class SocioMenu {
         nuevo.setMembresia(membresiaSeleccionada);
         servicio.agregarSocio(nuevo);
 
-        System.out.println(">> Socio guardado");
+        servicio.generarPrimeraCuota(nuevo);
+
+        System.out.println(">> Socio guardado con cuota inicial paga.");
     }
     private void buscar() {
         System.out.print("Ingrese DNI del socio: ");
