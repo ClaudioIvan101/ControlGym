@@ -13,17 +13,10 @@ public class Socio extends Persona{
     private LocalDate vencimientoActual;
     private Membresia membresia;
 
-    @Override
-    public String toString() {
-        return getNombre() + " (" + getDni() + ") - Membresía: " + membresia.getNombre();
-    }
-
-
 
     public Socio(int dni, String nombre, int edad) {
         super(dni, nombre, edad);
     }
-
 
     @Override
     public void mostrarInfo() {
@@ -49,5 +42,10 @@ public class Socio extends Persona{
         Cuota ultima = getUltimaCuotaPagada();
         if (ultima == null) return false;
         return !ultima.getFechaVencimiento().isBefore(LocalDate.now());
+    }
+
+    @Override
+    public String toString() {
+        return getNombre() + " (" + getDni() + ") - Membresía: " + membresia.getNombre();
     }
 }
