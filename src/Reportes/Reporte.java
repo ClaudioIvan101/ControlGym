@@ -14,8 +14,8 @@ public class Reporte {
     public Reporte(List<Socio> socios, List<Asistencia> asistencias) {
         this.socios = socios;
         this.asistencias = asistencias;
-
     }
+
     public double montoTotalFacturado() {
         return socios.stream()
                 .flatMap(s -> s.getCuotas().stream())
@@ -48,8 +48,6 @@ public class Reporte {
                 })
                 .toList();
     }
-
-
     public List<Socio> sociosConCuotaAlDia() {
         LocalDate hoy = LocalDate.now();
 
