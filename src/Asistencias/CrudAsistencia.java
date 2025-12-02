@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class CrudAsistencia {
+public clCrudAsistencia {
     private final List<Asistencia> asistencias;
     private final List<Socio> socios;
     private final List<Membresia> membresias;
