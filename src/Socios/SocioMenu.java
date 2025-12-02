@@ -10,9 +10,10 @@ public class SocioMenu {
     private final CrudSocios servicio;
     private Scanner scanner;
 
-    public SocioMenu(CrudMembresia crudMembresia, CrudSocios servicio) {
+    public SocioMenu(CrudMembresia crudMembresia, CrudSocios servicio, Scanner sc) {
         this.crudMembresia = crudMembresia;
         this.servicio = servicio;
+        this.scanner = sc;
     }
 
     public void mostrarMenu() {
