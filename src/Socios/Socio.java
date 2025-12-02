@@ -20,6 +20,9 @@ public class Socio extends Persona{
 
     @Override
     public void mostrarInfo() {
-
+        System.out.println(getNombre() + " (" + getDni() + ") - Membresía: " + membresia.getNombre());
     }
+
+    public void setMembresia(Membresia membresia) { this.membresia = membresia; }
+    public Membresia getMembresia() { return membresia; }
 }
