@@ -4,6 +4,7 @@ import Asistencias.MenuAsistencia;
 import Membresias.CrudMembresia;
 import Membresias.Membresia;
 import Membresias.MenuMembresia;
+import Reportes.MenuReporte;
 import Reportes.Reporte;
 import Socios.CrudSocios;
 import Socios.Socio;
@@ -15,7 +16,6 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-
         Scanner sc = new Scanner(System.in);
 
         List<Socio> socios = new ArrayList<>();
@@ -23,9 +23,14 @@ public class Main {
         List<Membresia> membresias = new ArrayList<>();
 
         CrudMembresia crudMembresia = new CrudMembresia(membresias);
-        CrudSocios crudSocios = new CrudSocios(socios,crudMembresia);
+        CrudSocios socioService = new CrudSocios(socios,crudMembresia);
+        CrudAsistencia crudAsistencia = new CrudAsistencia(socios, membresias, asistencias, sc);
 
-        MenuMembresia menuMembresia = new MenuMembresia(crudMembresia, crudSocios, sc);
+        SocioMenu socioMenu = new SocioMenu(crudMembresia, socioService, sc);
+        MenuMembresia menuMembresia = new MenuMembresia(crudMembresia, socioService, sc);
+        MenuAsistencia menuAsistencia = new MenuAsistencia(crudAsistencia, sc);
+        Reporte reporte = new Reporte(socios, asistencias);
+        MenuReporte menuReportes = new MenuReporte(reporte);
         int opcion;
 
         do {

@@ -18,10 +18,14 @@ public clCrudAsistencia {
     private final Scanner sc;
     private static int idGenerator = 1;
 
-    public CrudAsistencia(List<Asistencia> asistencias, List<Socio> socios, List<Membresia> membresias, Scanner sc) {
-        this.asistencias = asistencias;
+    public CrudAsistencia(List<Socio> socios,
+                          List<Membresia> membresias,
+                          List<Asistencia> asistencias,
+                          Scanner sc) {
+
         this.socios = socios;
         this.membresias = membresias;
+        this.asistencias = asistencias;
         this.sc = sc;
     }
 
