@@ -2,6 +2,7 @@ package Socios;
 
 import Membresias.Membresia;
 
+
 public class Socio extends Persona {
     private Membresia membresia;
 
