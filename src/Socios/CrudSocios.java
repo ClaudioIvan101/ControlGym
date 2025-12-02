@@ -1,5 +1,6 @@
 package Socios;
 
+import Membresias.CrudMembresia;
 import Membresias.Membresia;
 
 import java.util.ArrayList;
@@ -7,9 +8,12 @@ import java.util.List;
 
 public class CrudSocios {
     private final List<Socio> socios;
+    private final CrudMembresia crudMembresia;
+
     
-    public CrudSocios(List<Socio> socios) {
+    public CrudSocios(List<Socio> socios, CrudMembresia crudMembresia) {
         this.socios = socios;
+        this.crudMembresia = crudMembresia;
     }
 
     public void agregarSocio(Socio socio) {

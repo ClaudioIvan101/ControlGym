@@ -12,7 +12,7 @@ public class MenuMembresia {
     private final CrudSocios crudSocios;
 
 
-    public MenuMembresia(Scanner sc, CrudMembresia crudMembresia, CrudSocios crudSocios) {
+    public MenuMembresia(CrudMembresia crudMembresia, CrudSocios crudSocios,Scanner sc) {
         this.sc = sc;
         this.crudMembresia = crudMembresia;
         this.crudSocios = crudSocios;
