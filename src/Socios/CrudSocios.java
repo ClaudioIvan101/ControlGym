@@ -2,7 +2,7 @@ package Socios;
 
 import Membresias.CrudMembresia;
 import Membresias.Membresia;
-import cuotas.Cuota;
+import Cuotas.Cuota;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;

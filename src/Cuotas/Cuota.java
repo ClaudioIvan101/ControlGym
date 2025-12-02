@@ -2,7 +2,6 @@ package Cuotas;
 
 import Membresias.Membresia;
 import Socios.Socio;
-
 import java.time.LocalDate;
 
 public class Cuota {
