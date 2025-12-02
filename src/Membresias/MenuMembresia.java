@@ -1,5 +1,6 @@
 package Membresias;
 
+import Excepciones.MembresiaNoEncontradaException;
 import Socios.CrudSocios;
 import Socios.Socio;
 
@@ -56,7 +57,7 @@ public class MenuMembresia {
                     }
                     break;
                 case 5:
-                    System.out.println("Listar socios de membresia");
+                    listarSociosDeMembresia();
                     break;
                 case 6:
                     System.out.println("Saliendo del menu membresia.");
@@ -65,14 +66,22 @@ public class MenuMembresia {
             }
         } while (opcion != 6);
     }
+
     private void agregarMembresia() {
         String nombre;
         double precio = 0;
         boolean precioEsValido = false;
 
         try {
-            System.out.print("Nombre: ");
-            nombre = sc.nextLine().trim();
+            do {
+                System.out.print("Nombre: ");
+                nombre = sc.nextLine().trim();
+
+                if (nombre.isEmpty()) {
+                    System.out.println("ERROR: El nombre no puede estar vacío.");
+                }
+
+            } while (nombre.isEmpty());
             do {
                 System.out.print("Precio: ");
                 String precioStr = sc.nextLine().trim();
@@ -81,14 +90,15 @@ public class MenuMembresia {
                     precioEsValido = CrudMembresia.esPrecioValido(precio);
 
                     if (!precioEsValido) {
-                        System.out.println("ERROR: El precio debe ser un valor positivo (mayor a cero).");
+                        System.out.println("ERROR: El precio debe ser mayor a cero.");
                     }
                 } catch (NumberFormatException e) {
-                    System.out.println("RROR: Ingrese un número válido para el precio.");
+                    System.out.println("ERROR: Ingrese un número válido para el precio.");
                     precioEsValido = false;
                 }
 
             } while (!precioEsValido);
+
             Membresia m = crudMembresia.agregar(nombre, precio);
             System.out.println("Membresia agregada: " + m);
 
@@ -96,6 +106,7 @@ public class MenuMembresia {
             System.out.println("Operación cancelada debido a: " + e.getMessage());
         }
     }
+
 
     private void modificarMembresia() {
         try {
@@ -155,14 +166,16 @@ public class MenuMembresia {
 
     private void eliminarMembresia() {
         try {
+            mostrarTodas();
             System.out.print("Ingrese ID de la membresía a eliminar: ");
             int id = Integer.parseInt(sc.nextLine().trim());
-
             crudMembresia.eliminar(id);
             System.out.println("Membresía eliminada correctamente.");
 
         } catch (NumberFormatException e) {
             System.out.println("ID inválido. Operación cancelada.");
+        } catch (MembresiaNoEncontradaException e) {
+            System.out.println(e.getMessage());
         }
     }
 
@@ -176,7 +189,7 @@ public class MenuMembresia {
         mostrarMembresias(lista, indice + 1);
     }
 
-    private void listarSociosDeMembresia(){
+    private void listarSociosDeMembresia() throws MembresiaNoEncontradaException {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("----- Membresías disponibles -----");
@@ -191,7 +204,9 @@ public class MenuMembresia {
             System.out.println("No existe una membresía con ese ID.");
             return;
         }
+
         List<Socio> socios = crudSocios.buscarPorMembresia(m);
+
         if (socios.isEmpty()) {
             System.out.println(
                     "No hay socios registrados en la membresía '" + m.getNombre() + "'."

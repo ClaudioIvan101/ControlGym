@@ -1,5 +1,7 @@
 package Membresias;
 
+import Excepciones.MembresiaNoEncontradaException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,17 +29,21 @@ public class CrudMembresia {
         return m;
     }
 
-    public boolean modificar(int id, String nuevoNombre, double nuevoPrecio) {
+    public boolean modificar(int id, String nuevoNombre, double nuevoPrecio) throws MembresiaNoEncontradaException {
         if (!esPrecioValido(nuevoPrecio)) {
             return false;
         }
-        Membresia m = buscarPorId(id);
-        m.setNombre(nuevoNombre);
-        m.setPrecio(nuevoPrecio);
-        return true;
+        try {
+            Membresia m = buscarPorId(id);
+            m.setNombre(nuevoNombre);
+            m.setPrecio(nuevoPrecio);
+            return true;
+        } catch (MembresiaNoEncontradaException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
-
-    public void eliminar(int id){
+    public void eliminar(int id) throws MembresiaNoEncontradaException {
         Membresia m = buscarPorId(id);
         lista.remove(m);
     }
@@ -48,11 +54,11 @@ public class CrudMembresia {
         return new ArrayList<>(lista);
     }
 
-    public Membresia buscarPorId(int id){
+    public Membresia buscarPorId(int id) throws MembresiaNoEncontradaException {
         for (Membresia m : lista) {
             if (m.getId() == id) return m;
         }
-        return null;
+        throw new MembresiaNoEncontradaException(id);
     }
 
     public static boolean esPrecioValido(double precio) {

@@ -17,22 +17,23 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
-
+        // BASE DE DATOS EN MEMORIA
         List<Socio> socios = new ArrayList<>();
         List<Asistencia> asistencias = new ArrayList<>();
         List<Membresia> membresias = new ArrayList<>();
-
+        // CRUD SERVICES
         CrudMembresia crudMembresia = new CrudMembresia(membresias);
         CrudSocios socioService = new CrudSocios(socios,crudMembresia);
         CrudAsistencia crudAsistencia = new CrudAsistencia(socios, membresias, asistencias, sc);
 
+        Reporte reporte = new Reporte(socios, asistencias);
+        // MENUS
+        MenuAsistencia menuAsistencia = new MenuAsistencia(crudAsistencia, sc);
+        MenuReporte menuReportes = new MenuReporte(reporte);
         SocioMenu socioMenu = new SocioMenu(crudMembresia, socioService, sc);
         MenuMembresia menuMembresia = new MenuMembresia(crudMembresia, socioService, sc);
-        MenuAsistencia menuAsistencia = new MenuAsistencia(crudAsistencia, sc);
-        Reporte reporte = new Reporte(socios, asistencias);
-        MenuReporte menuReportes = new MenuReporte(reporte);
-        int opcion;
 
+        int opcion;
         do {
             System.out.println("===== SISTEMA DE GESTIÓN DE GIMNASIO =====");
             System.out.println("1. Gestión de Socios");
@@ -43,19 +44,18 @@ public class Main {
             System.out.print("Elija una opción: ");
 
             opcion = Integer.parseInt(sc.nextLine().trim());
-            // Futuros escenarios de menú
             switch (opcion) {
                 case 1:
-                    // socioMenu.mostrarMenu();
+                    socioMenu.mostrarMenu();
                     break;
                 case 2:
                     menuMembresia.mostrarMenuMembresia();
                     break;
                 case 3:
-                    // menuAsistencia.mostrarMenu();
+                    menuAsistencia.mostrarMenu();
                     break;
                 case 4:
-                    // menuReportes.mostrarMenuReportes();
+                    menuReportes.mostrarMenuReportes();
                     break;
                 case 5:
                     System.out.println("Saliendo del sistema...");

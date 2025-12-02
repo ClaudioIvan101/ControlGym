@@ -10,7 +10,7 @@ public class Asistencia {
     private Membresia membresia;
     private LocalDateTime fechaHora;
 
-    public Asistencia(int id,Socio socio, LocalDateTime fechaHora, Membresia membresia) {
+    public Asistencia(int id, Socio socio, LocalDateTime fechaHora, Membresia membresia) {
         this.socio = socio;
         this.membresia = membresia;
         this.fechaHora = fechaHora;
@@ -49,12 +49,12 @@ public class Asistencia {
         this.id = id;
     }
 
-    //@Override
-    //public String toString() {
-    //return "Asistencia #" + id +
-    //          " | Socio: " + socio.getNombre() +
-    //          " | DNI: " + socio.getDni() +
-    //        " | Membresía: " + membresia.getNombre() +
-    //          " | Fecha/Hora: " + fechaHora;
+    @Override
+    public String toString() {
+        return "Asistencia #" + id +
+                " | Socio: " + socio.getNombre() +
+                " | DNI: " + socio.getDni() +
+                " | Membresía: " + membresia.getNombre() +
+                " | Fecha/Hora: " + fechaHora;
     }
-
+}

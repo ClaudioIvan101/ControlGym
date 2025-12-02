@@ -1,5 +1,6 @@
 package Socios;
 
+import Excepciones.MembresiaNoEncontradaException;
 import Membresias.CrudMembresia;
 import Membresias.Membresia;
 import java.util.List;
@@ -54,38 +55,37 @@ public class SocioMenu {
 
     } while (opcion != 0);
 }
-    private void agregar()  {
+
+    private void agregar() throws MembresiaNoEncontradaException {
         List<Membresia> lista = crudMembresia.listar();
+
         System.out.println("--- ALTA DE SOCIO ---");
 
-        System.out.print("Nombre: ");
-        String nombre = scanner.nextLine();
-
-        System.out.print("DNI: ");
-        int dni = Integer.parseInt(scanner.nextLine());
-
-        System.out.print("Edad: ");
-        int edad = Integer.parseInt(scanner.nextLine());
+        String nombre = leerTexto("Nombre: ");
+        int dni = leerEntero("DNI: ");
+        int edad = leerEntero("Edad: ");
 
         System.out.println("Seleccionar membresía:");
         lista.forEach(m ->
                 System.out.println("ID " + m.getId() + " - " + m.getNombre() + " ($" + m.getPrecio() + ")")
         );
 
-        System.out.print("ID membresia: ");
-        int idMembresia = Integer.parseInt(scanner.nextLine());
-
+        int idMembresia = leerEntero("ID membresia: ");
         Membresia membresiaSeleccionada = crudMembresia.buscarPorId(idMembresia);
 
+        if (membresiaSeleccionada == null) {
+            throw new MembresiaNoEncontradaException(idMembresia);
+        }
 
         Socio nuevo = new Socio(dni, nombre, edad);
         nuevo.setMembresia(membresiaSeleccionada);
-        servicio.agregarSocio(nuevo);
 
+        servicio.agregarSocio(nuevo);
         servicio.generarPrimeraCuota(nuevo);
 
         System.out.println(">> Socio guardado con cuota inicial paga.");
     }
+
     private void buscar() {
         System.out.print("Ingrese DNI del socio: ");
         int dni = Integer.parseInt(scanner.nextLine());
@@ -138,5 +138,25 @@ public class SocioMenu {
         servicio.obtenerTodos().forEach(Socio::mostrarInfo);
     }
 
+    private int leerEntero(String mensaje) {
+        while (true) {
+            System.out.print(mensaje);
+            String linea = scanner.nextLine().trim();
+            if (linea.isEmpty()) {
+                System.out.println("Debe ingresar un número. Intente otra vez.");
+                continue;
+            }
+            try {
+                return Integer.parseInt(linea);
+            } catch (NumberFormatException e) {
+                System.out.println("Valor inválido. Ingrese un número.");
+            }
+        }
+    }
+
+    private String leerTexto(String mensaje) {
+        System.out.print(mensaje);
+        return scanner.nextLine();
+    }
 
 }

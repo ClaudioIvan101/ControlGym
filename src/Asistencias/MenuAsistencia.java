@@ -25,10 +25,10 @@ public class MenuAsistencia {
 
             switch (opcion) {
                 case 1:
-                    System.out.println("Registrar asistencia");
+                   crudAsistencia.registrarAsistencia();
                     break;
                 case 2:
-                    System.out.println("listar asistencias");
+                    crudAsistencia.listarAsistencias();
                     break;
                 case 3:
                     System.out.println("Volviendo al menú anterior...");

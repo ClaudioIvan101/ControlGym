@@ -78,6 +78,6 @@ public class MenuReporte {
                     System.out.println("Opción inválida. Por favor intente de nuevo.");
             }
 
-        } while (opcion != 9);
+        } while (opcion != 7);
     }
 }
